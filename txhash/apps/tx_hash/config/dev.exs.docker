@@ -1,0 +1,10 @@
+use Mix.Config
+
+# Configure your database
+config :tx_hash, TxHash.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "tx_hash_dev",
+  hostname: System.get_env("POSTGRES_HOST"),
+  pool_size: 10

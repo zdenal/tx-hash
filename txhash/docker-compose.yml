@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  postgres:
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    image: postgres:9.6-alpine
+    ports:
+      - 5432:5432
+    networks:
+      - postgres
+
+  umbrella:
+    environment:
+      - POSTGRES_HOST=postgres
+      - MIX_ENV=dev
+    build: .
+    command: sh ./scripts/docker_server_script.sh
+    ports:
+      - 4000:4000
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    stdin_open: true
+    tty: true
+    networks:
+      - postgres
+
+networks:
+  postgres:
