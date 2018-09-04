@@ -11,7 +11,7 @@ This will run docker containers in detach mode (in the background). If you will 
 `docker ps` to list your running containers and then kill them by `docker kill ${container_id_from_list}`.
 
 ## TxHash FE
-Is written in really simple way. No more level state hierarchy, no composing of reducers, no sagas.
+Is written in really simple way. Using Redux and Redux-Thunk.
 
 ![Output sample](pictures/txhash-screencast.gif)
 

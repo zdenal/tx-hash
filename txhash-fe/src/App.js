@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Custom.css';
-import Transactions from './Transactions';
+import Transactions from './components/Transactions';
 
 class App extends Component {
   render() {
