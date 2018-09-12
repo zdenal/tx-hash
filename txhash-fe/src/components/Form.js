@@ -1,12 +1,29 @@
 import { connect } from 'react-redux'
 import React from 'react';
-import { submitTransaction } from '../actions'
+import { sendTransaction } from '../actions'
 
 const mapStateToProps = ({ transactions: { transactionErrors } }, ownProps) => {
   return {
     transactionErrors: transactionErrors
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  submitTransaction: (event) => {
+    event.preventDefault()
+    const data = new FormData(event.target)
+
+    const params = {
+      hash: data.get('txhash'),
+      chain: 'ethereum'
+    }
+
+    // TODO: quick BAAAAAAD hack. Should be managed by redux.
+    event.target.getElementsByTagName('input')[0].value = ""
+
+    dispatch(sendTransaction(params))
+  }
+})
 
 function renderError(field, error) {
   if(!!error) {
@@ -30,7 +47,7 @@ function render({submitTransaction, transactionErrors}) {
 
 const TransactionForm = connect(
   mapStateToProps,
-  { submitTransaction }
+  mapDispatchToProps
 )(render)
 
 export default TransactionForm
