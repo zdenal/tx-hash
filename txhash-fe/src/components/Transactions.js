@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import React from 'react'
 import Transaction from './Transaction'
 import Form from './Form'
-import { SET_CHANNEL } from '../actions'
+import { Creators } from '../actions'
 
 
 const mapStateToProps = ({ transactions: { list, channel} }, ownProps) => {
@@ -13,7 +13,7 @@ const mapStateToProps = ({ transactions: { list, channel} }, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  initChannel: () => dispatch({ type: SET_CHANNEL })
+  initChannel: () => dispatch(Creators.setChannel())
 })
 
 class ConnectedTransactions extends React.Component {

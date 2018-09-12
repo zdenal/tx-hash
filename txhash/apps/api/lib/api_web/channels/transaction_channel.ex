@@ -27,7 +27,7 @@ defmodule ApiWeb.TransactionChannel do
       json = View.render("show.json", %{transaction: transaction})
 
       broadcast(socket, "new_transaction", json)
-      {:noreply, socket}
+      {:reply, :ok, socket}
     else
       {:error, error} -> handle_create_error_response(error, socket)
     end

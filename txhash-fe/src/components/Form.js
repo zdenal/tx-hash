@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import React from 'react';
-import { sendTransaction } from '../actions'
+import { Creators } from '../actions'
 
 const mapStateToProps = ({ transactions: { transactionErrors } }, ownProps) => {
   return {
@@ -12,16 +12,10 @@ const mapDispatchToProps = (dispatch) => ({
   submitTransaction: (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
-
-    const params = {
-      hash: data.get('txhash'),
-      chain: 'ethereum'
-    }
+    dispatch(Creators.sendTransaction(data.get('txhash'), 'ethereum'))
 
     // TODO: quick BAAAAAAD hack. Should be managed by redux.
     event.target.getElementsByTagName('input')[0].value = ""
-
-    dispatch(sendTransaction(params))
   }
 })
 
